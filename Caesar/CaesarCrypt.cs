@@ -81,5 +81,22 @@ namespace Caesar
 
             return MoveRight(cipher, (-key));
         }
+
+        public static int Probability(string plaintext, string[] words)
+        {
+            if (plaintext.Length < 1 || words.Length < 1)
+                return 0;
+
+            int count = 0;
+            foreach (string word in words)
+            {
+                string lowerWord = word.ToLower();
+                if (plaintext.Contains(lowerWord))
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
     }
 }

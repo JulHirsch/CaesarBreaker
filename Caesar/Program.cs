@@ -71,15 +71,26 @@ namespace Caesar
                         string input3 = Console.ReadLine();
                         if (input3.Length > 1)
                         {
-                            Console.WriteLine("\nResult:\n");
+                            var list = new List<Tuple<int, string, int>>();
+
                             for (int count = 0; count < 27; count++)
                             {
-                                Console.WriteLine($"Key: {count} Plaintext:\b");
-                                Console.ForegroundColor = ConsoleColor.Cyan;
-                                Console.WriteLine($"{CaesarCrypt.Decrypt(input3, count)}");
-                                Console.ForegroundColor = ConsoleColor.White;
-                                Console.WriteLine("\b");
+                                int probability = CaesarCrypt.Probability(CaesarCrypt.Decrypt(input3, count), Wordlist.German);
+                                list.Add(new Tuple<int, string, int>(probability, CaesarCrypt.Decrypt(input3, count), count));
                             }
+
+                            list.Sort((x, y) => y.Item1.CompareTo(x.Item1));
+
+                            Console.WriteLine("\nResults:\n");
+
+                            foreach (var tuple in list)
+                            {
+                                if (tuple.Item1 > 2)
+                                {
+                                    Console.WriteLine(" Matches: {0}\b Plaintext: {1}\b Key: {2}\n", tuple.Item1, tuple.Item2.ToString(), tuple.Item3);
+                                }
+                            }
+
                             Console.WriteLine("\n");
                         }
                         break;
@@ -100,7 +111,7 @@ namespace Caesar
             Console.WriteLine("Select the desired mode:");
             Console.WriteLine("  1: Encrypt");
             Console.WriteLine("  2: Decrypt");
-            Console.WriteLine("  3: Bruteforce");
+            Console.WriteLine("  3: Bruteforce (only german)");
             Console.WriteLine("  4: end program");
 
             Console.Write("\nmode: ");
