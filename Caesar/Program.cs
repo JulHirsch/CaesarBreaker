@@ -11,16 +11,89 @@ namespace Caesar
         {
             while (true)
             {
-                switch (Ask())
+                int mode = 0;
+                while (mode == 0)
                 {
+                    mode = AskForMode();
+                }
+                switch (mode)
+                {
+                    case 1:
+                        Console.Write("\n Key: ");
+
+                        int key = 0;
+                        while (key == 0)
+                        {
+                            try
+                            {
+                                key = Convert.ToInt32(Console.ReadLine());
+                            }
+                            catch
+                            {
+                                key = 0;
+                            }
+                        }
+
+                        Console.Write(" Plaintext:   ");
+                        string input = Console.ReadLine();
+
+                        Console.WriteLine($" Ciphertext:  {CaesarCrypt.Encrypt(input, key)}");
+                        Console.WriteLine("\n");
+
+                        break;
+
+                    case 2:
+                        Console.Write("\n Key: ");
+
+                        int key2 = 0;
+                        while (key2 == 0)
+                        {
+                            try
+                            {
+                                key2 = Convert.ToInt32(Console.ReadLine());
+                            }
+                            catch
+                            {
+                                key2 = 0;
+                            }
+                        }
+
+                        Console.Write(" Ciphertext:  ");
+                        string input2 = Console.ReadLine();
+
+                        Console.WriteLine($" Plaintext:   {CaesarCrypt.Decrypt(input2, key2)}");
+                        Console.WriteLine("\n");
+
+                        break;
+
+                    case 3:
+                        return;
+                        break;
+
+                    default:
+                        Console.WriteLine("Unfortunately, there is no mode that corresponds to the input.");
+                        break;
                 }
             }
-            Console.WriteLine(CaesarCrypt.Decrypt("jcnnq", 2));
         }
 
-        public static int Ask()
+        public static int AskForMode()
         {
-            return
+            Console.WriteLine("Select the desired mode:");
+            Console.WriteLine("  1: Encrypt");
+            Console.WriteLine("  2: Decrypt");
+            Console.WriteLine("  3: end program");
+
+            Console.Write("\nmode: ");
+            try
+            {
+                int num = Convert.ToInt32(Console.ReadLine());
+                return num;
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 }
