@@ -83,11 +83,18 @@ namespace Caesar
 
                             Console.WriteLine("\nResults:\n");
 
+                            int show = 0;
                             foreach (var tuple in list)
                             {
-                                if (tuple.Item1 > 2)
+                                if (show < 4)
                                 {
+                                    if (show == 0)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                    }
                                     Console.WriteLine(" Matches: {0}\n Plaintext: {1}\n Key: {2}\n", tuple.Item1, tuple.Item2.ToString(), tuple.Item3);
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    show++;
                                 }
                             }
 
