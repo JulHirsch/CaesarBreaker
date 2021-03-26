@@ -115,6 +115,7 @@ namespace Caesar
 
         public static int AskForMode()
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Select the desired mode:");
             Console.WriteLine("  1: Encrypt");
             Console.WriteLine("  2: Decrypt");
