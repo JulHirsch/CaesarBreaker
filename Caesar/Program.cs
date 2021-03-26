@@ -67,6 +67,24 @@ namespace Caesar
                         break;
 
                     case 3:
+                        Console.Write(" Ciphertext:  ");
+                        string input3 = Console.ReadLine();
+                        if (input3.Length > 1)
+                        {
+                            Console.WriteLine("\nResult:\n");
+                            for (int count = 0; count < 27; count++)
+                            {
+                                Console.WriteLine($"Key: {count} Plaintext:\b");
+                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                Console.WriteLine($"{CaesarCrypt.Decrypt(input3, count)}");
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.WriteLine("\b");
+                            }
+                            Console.WriteLine("\n");
+                        }
+                        break;
+
+                    case 4:
                         return;
                         break;
 
@@ -82,7 +100,8 @@ namespace Caesar
             Console.WriteLine("Select the desired mode:");
             Console.WriteLine("  1: Encrypt");
             Console.WriteLine("  2: Decrypt");
-            Console.WriteLine("  3: end program");
+            Console.WriteLine("  3: Bruteforce");
+            Console.WriteLine("  4: end program");
 
             Console.Write("\nmode: ");
             try
