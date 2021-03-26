@@ -87,7 +87,7 @@ namespace Caesar
                             {
                                 if (tuple.Item1 > 2)
                                 {
-                                    Console.WriteLine(" Matches: {0}\b Plaintext: {1}\b Key: {2}\n", tuple.Item1, tuple.Item2.ToString(), tuple.Item3);
+                                    Console.WriteLine(" Matches: {0}\n Plaintext: {1}\n Key: {2}\n", tuple.Item1, tuple.Item2.ToString(), tuple.Item3);
                                 }
                             }
 
